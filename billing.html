@@ -1,0 +1,429 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+<title>Varaki Tissue Billing</title>
+
+<style>
+body{
+  font-family: monospace;
+  background:#eceff1;
+  display:flex;
+  justify-content:center;
+  padding-top:50px;
+}
+
+.form-box{
+  background:white;
+  padding:20px;
+  width:320px;
+  border-radius:8px;
+  box-shadow:0 5px 15px rgba(0,0,0,0.2);
+}
+
+label{
+  font-weight:bold;
+}
+
+select,input{
+  width:100%;
+  padding:8px;
+  margin-top:5px;
+  margin-bottom:15px;
+  border-radius:4px;
+  border:1px solid #ccc;
+}
+
+button{
+  width:100%;
+  padding:10px;
+  background:#37474f;
+  color:white;
+  border:none;
+  cursor:pointer;
+  border-radius:4px;
+  transition:0.3s;
+}
+
+button:hover{
+  background:#263238;
+}
+
+.receipt{
+  display:none;
+  background:#fdfaf6; /* soft cream background */
+  padding:20px;
+  width:280px;
+  margin-top:30px;
+  border:1px solid #b0bec5;
+  border-radius:8px;
+  box-shadow:0 5px 10px rgba(0,0,0,0.1);
+}
+
+.center{
+  text-align:center;
+}
+
+.line{
+  border-top:1px dashed #90a4ae;
+  margin:8px 0;
+}
+
+.print-btn{
+  margin-top:10px;
+  background:#00796b;
+  width:100%;
+  padding:8px;
+  color:white;
+  border:none;
+  cursor:pointer;
+  border-radius:4px;
+}
+
+.print-btn:hover{
+  background:#004d40;
+}
+
+@media print{
+  body *{
+    visibility:hidden;
+  }
+  #receipt, #receipt *{
+    visibility:visible;
+  }
+  #receipt{
+    position:absolute;
+    top:0;
+    left:0;
+  }
+  .print-btn{
+    display:none;
+  }
+}
+</style>
+
+</head>
+
+<body>
+
+<div>
+
+<div class="form-box">
+
+<h3 class="center">Tissue Billing</h3>
+
+<label>Product</label>
+<select id="product">
+  <option value="premium">Premium Tissue</option>
+  <option value="soft">Soft Tissue</option>
+  <option value="economy">Economy Tissue</option>
+</select>
+
+<label>Sale Type</label>
+<select id="saleType">
+  <option value="wholesale">Wholesale</option>
+  <option value="retail">Retail</option>
+</select>
+
+<label>Pack Type</label>
+<select id="packType">
+  <option value="single">Single</option>
+  <option value="bulk">Bulk</option>
+</select>
+
+<label>Quantity</label>
+<input type="number" id="qty" value="1">
+
+<button onclick="generateBill()">Generate Bill</button>
+
+</div>
+
+<div class="receipt" id="receipt">
+
+<div class="center">
+  <b>VARAKI TISSUE</b><br>
+  Wholesale & Retail
+</div>
+
+<div class="line"></div>
+
+Date: <span id="date"></span>
+
+<div class="line"></div>
+
+Product: <span id="pname"></span><br>
+Sale: <span id="sale"></span><br>
+Pack: <span id="pack"></span><br>
+Quantity: <span id="qtyshow"></span><br>
+Total Packs: <span id="packs"></span><br>
+Price: ₹<span id="price"></span>
+
+<div class="line"></div>
+
+<b>Total: ₹<span id="total"></span></b>
+
+<div class="line"></div>
+
+<div class="center">
+Thank You<br>
+Visit Again
+</div>
+
+<button class="print-btn" onclick="printBill()">Print Bill</button>
+
+</div>
+
+</div>
+
+<script>
+const products={
+  premium:{name:"Premium Tissue",bulk:12,wholesale:15,retail:18},
+  soft:{name:"Soft Tissue",bulk:10,wholesale:13,retail:16},
+  economy:{name:"Economy Tissue",bulk:8,wholesale:10,retail:12}
+}
+
+function generateBill(){
+  let product=document.getElementById("product").value
+  let saleType=document.getElementById("saleType").value
+  let packType=document.getElementById("packType").value
+  let qty=parseInt(document.getElementById("qty").value)
+
+  let data=products[product]
+
+  let packs = (packType==="bulk") ? qty*data.bulk : qty
+  let price=data[saleType]
+  let total=packs*price
+
+  document.getElementById("pname").innerText=data.name
+  document.getElementById("sale").innerText=saleType
+  document.getElementById("pack").innerText=packType
+  document.getElementById("qtyshow").innerText=qty
+  document.getElementById("packs").innerText=packs
+  document.getElementById("price").innerText=price
+  document.getElementById("total").innerText=total
+
+  let today=new Date()
+  document.getElementById("date").innerText=today.toLocaleDateString()
+
+  document.getElementById("receipt").style.display="block"
+}
+
+function printBill(){
+  window.print()
+}
+</script>
+
+</body>
+</html> -->
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Varaki Tissue Billing</title>
+
+<style>
+body{
+  font-family: monospace;
+  background:#cce0ff; /* soft blue background */
+  display:flex;
+  justify-content:center;
+  padding-top:50px;
+}
+
+.form-box{
+  background:white;
+  padding:20px;
+  width:320px;
+  border-radius:8px;
+  box-shadow:0 5px 15px rgba(0,0,0,0.2);
+}
+
+label{
+  font-weight:bold;
+}
+
+select,input{
+  width:100%;
+  padding:8px;
+  margin-top:5px;
+  margin-bottom:15px;
+  border-radius:4px;
+  border:1px solid #ccc;
+}
+
+button{
+  width:100%;
+  padding:10px;
+  background:#37474f;
+  color:white;
+  border:none;
+  cursor:pointer;
+  border-radius:4px;
+  transition:0.3s;
+}
+
+button:hover{
+  background:#263238;
+}
+
+.receipt{
+  display:none;
+  background:#fdfaf6; /* soft cream background */
+  padding:20px;
+  width:280px;
+  margin-top:30px;
+  border:1px solid #b0bec5;
+  border-radius:8px;
+  box-shadow:0 5px 10px rgba(0,0,0,0.1);
+}
+
+.center{
+  text-align:center;
+}
+
+.line{
+  border-top:1px dashed #90a4ae;
+  margin:8px 0;
+}
+
+.print-btn{
+  margin-top:10px;
+  background:#00796b;
+  width:100%;
+  padding:8px;
+  color:white;
+  border:none;
+  cursor:pointer;
+  border-radius:4px;
+}
+
+.print-btn:hover{
+  background:#004d40;
+}
+
+@media print{
+  body *{
+    visibility:hidden;
+  }
+  #receipt, #receipt *{
+    visibility:visible;
+  }
+  #receipt{
+    position:absolute;
+    top:0;
+    left:0;
+  }
+  .print-btn{
+    display:none;
+  }
+}
+</style>
+
+</head>
+
+<body>
+
+<div>
+
+<div class="form-box">
+
+<h3 class="center">Tissue Billing</h3>
+
+<label>Product</label>
+<select id="product">
+  <option value="premium">Premium Tissue</option>
+  <option value="soft">Soft Tissue</option>
+  <option value="economy">Economy Tissue</option>
+</select>
+
+<label>Pack Type</label>
+<select id="packType">
+  <option value="single">Single</option>
+  <option value="bulk">Bulk</option>
+</select>
+
+<label>Quantity</label>
+<input type="number" id="qty" value="1">
+
+<button onclick="generateBill()">Generate Bill</button>
+
+</div>
+
+<div class="receipt" id="receipt">
+
+<div class="center">
+  <b>VARAKI TISSUE</b>
+</div>
+
+<div class="line"></div>
+
+Date: <span id="date"></span>
+
+<div class="line"></div>
+
+Product: <span id="pname"></span><br>
+Pack: <span id="pack"></span><br>
+Quantity: <span id="qtyshow"></span><br>
+Total Packs: <span id="packs"></span><br>
+Price: ₹<span id="price"></span>
+
+<div class="line"></div>
+
+<b>Total: ₹<span id="total"></span></b>
+
+<div class="line"></div>
+
+<div class="center">
+Thank You<br>
+Visit Again
+</div>
+
+<button class="print-btn" onclick="printBill()">Print Bill</button>
+
+</div>
+
+</div>
+
+<script>
+const products={
+  premium:{name:"Premium Tissue",bulk:12,price:15},
+  soft:{name:"Soft Tissue",bulk:10,price:13},
+  economy:{name:"Economy Tissue",bulk:8,price:10}
+}
+
+function generateBill(){
+  let product=document.getElementById("product").value
+  let packType=document.getElementById("packType").value
+  let qty=parseInt(document.getElementById("qty").value)
+
+  let data=products[product]
+
+  let packs = (packType==="bulk") ? qty*data.bulk : qty
+  let price=data.price
+  let total=packs*price
+
+  document.getElementById("pname").innerText=data.name
+  document.getElementById("pack").innerText=packType
+  document.getElementById("qtyshow").innerText=qty
+  document.getElementById("packs").innerText=packs
+  document.getElementById("price").innerText=price
+  document.getElementById("total").innerText=total
+
+  let today=new Date()
+  let dd=String(today.getDate()).padStart(2,'0')
+  let mm=String(today.getMonth()+1).padStart(2,'0')
+  let yyyy=today.getFullYear()
+  document.getElementById("date").innerText=dd+'/'+mm+'/'+yyyy
+
+  document.getElementById("receipt").style.display="block"
+}
+
+function printBill(){
+  window.print()
+}
+</script>
+
+</body>
+</html>
